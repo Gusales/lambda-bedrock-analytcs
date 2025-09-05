@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serveless-2016-10-31
+Description: >
+  Lambda Bedrock Analytcs
+  
+  Esta função AWS Lambda atua como uma espécie de calculadora de Estatística Descritiva, 
+  projetada para processar um conjunto de dados numéricos brutos e gerar uma análise completa de Distribuição de 
+  Frequência.
+  
+Resources:
+  LambdaBedrockAnalytcs:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler # Specifies the function to execute (e.g., lambda_handler in app.py)
+      Runtime: python3.9          # Defines the Python runtime version
+      CodeUri: handlers/       # Points to the directory containing your Python code
+      Events:
+        BedrockAnalytcsApi:
+          Type: Api
+          Properties:
+            Path: /analytcs
+            Method: POST
