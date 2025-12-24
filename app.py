@@ -27,6 +27,11 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 
         return {
             "statusCode": HTTPStatus.OK,
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type"
+            },
             "body": json.dumps({
                 "data": results
             })
@@ -34,6 +39,11 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     except (BodyNullException, InputValidationException) as e:
         return {
             "statusCode": HTTPStatus.BAD_REQUEST,
+            "headers": {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET,OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type"
+            },
             "body": json.dumps({
                 "message": e.getMessage()
             })

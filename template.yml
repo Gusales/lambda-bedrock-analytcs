@@ -15,6 +15,11 @@ Globals:
     Runtime: python3.11
     Architectures:
       - x86_64
+  Api:
+    Cors:
+      AllowOrigin: "'*'"
+      AllowMethods: "'GET,OPTIONS'"
+      AllowHeaders: "'Content-Type,Authorization'"
 
 Resources:
   LambdaBedrockAnalytcs:
