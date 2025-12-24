@@ -40,6 +40,8 @@ class DistruibuitionProcessService:
         i, last_index = 0, 0
         last_num = nums_set[len(nums_set) - 1]
         interval = [nums_set[i], nums_set[i] + ai]
+        sum_total_fixi = 0
+        sum_total_fixi_sqrt = 0
         print(f"[DistruibuitionProcessService.calculate]: Percorrendo as classes para ir gerando a tabela")
         while interval[0] <= last_num:
             body = {
@@ -70,6 +72,12 @@ class DistruibuitionProcessService:
             body["xi"] = (interval[0] + interval[1]) / 2
             print(f"[DistruibuitionProcessService.calculate]: Ponto médio: {body['xi']}")
 
+            body["fixi"] = body["fi"] * body["xi"]
+            sum_total_fixi += body["fixi"]
+
+            body["fixi2"] = body["fi"] * (body["xi"] ** 2)
+            sum_total_fixi_sqrt += body["fixi2"]
+
             body["fri"] = round(body["fi"] / length_of_samples, 4)
             print(f"[DistruibuitionProcessService.calculate]: Frequência Relativa: {body['fri']}")
 
@@ -81,8 +89,15 @@ class DistruibuitionProcessService:
 
             interval = [interval[1], interval[1] + ai]
 
+        media_total = (sum_total_fixi / length_of_samples)
+        variance = (sum_total_fixi_sqrt / length_of_samples) - media_total ** 2
+        standard_deviation = math.sqrt(variance)
+
         return {
             "classes": classes,
             "amplitude": ai,
+            "media": media_total,
+            "variance": variance,
+            "standard_deviation": standard_deviation,
             "table": table,
         }
