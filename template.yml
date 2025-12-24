@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Transform: AWS::Serveless-2016-10-31
+Transform: AWS::Serverless-2016-10-31
 Description: >
   Lambda Bedrock Analytcs
   
@@ -7,16 +7,25 @@ Description: >
   projetada para processar um conjunto de dados numéricos brutos e gerar uma análise completa de Distribuição de 
   Frequência.
   
+
+Globals:
+  Function:
+    Timeout: 5
+    MemorySize: 128
+    Runtime: python3.11
+    Architectures:
+      - x86_64
+
 Resources:
   LambdaBedrockAnalytcs:
     Type: AWS::Serverless::Function
     Properties:
       Handler: app.lambda_handler # Specifies the function to execute (e.g., lambda_handler in app.py)
-      Runtime: python3.9          # Defines the Python runtime version
-      CodeUri: handlers/       # Points to the directory containing your Python code
+      Runtime: python3.11          # Defines the Python runtime version
+      CodeUri: .       # Points to the directory containing your Python code
       Events:
         BedrockAnalytcsApi:
           Type: Api
           Properties:
             Path: /analytcs
-            Method: POST
+            Method: GET

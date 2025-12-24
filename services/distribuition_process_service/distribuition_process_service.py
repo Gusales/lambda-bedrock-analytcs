@@ -23,7 +23,7 @@ class DistruibuitionProcessService:
 
         return result
 
-    def calculate(self) -> List[Dict[str, Any]]:
+    def calculate(self) -> dict[str, list[Any] | int]:
         print(f"[DistruibuitionProcessService.calculate]: Realizando cálculo da tabela de distribuição")
 
         nums_set = list(set(self._samples))
@@ -81,4 +81,8 @@ class DistruibuitionProcessService:
 
             interval = [interval[1], interval[1] + ai]
 
-        return table
+        return {
+            "classes": classes,
+            "amplitude": ai,
+            "table": table,
+        }
