@@ -17,13 +17,13 @@ class ValidateInputPipe:
 
     def validate(self):
         self._logger.info("[ValidateInputPipe.validate] - Validando entradas da lambda")
-        samples_encoded = self._event.get('queryStringParameters', {}).get('samples')
+        samples_encoded = self._event.get('samples')
         self._logger.info(f"[ValidateInputPipe.validate] - event.queryStringParameters {samples_encoded}")
         if isinstance(samples_encoded, List):
             self._validateIsNumbers(samples_encoded)
             return samples_encoded
 
-        elif not samples_encoded:
+        elif not samples_encoded or samples_encoded is None:
             raise InputValidationException()
 
         else:

@@ -134,3 +134,6 @@ static/
 .aws
 samconfig.toml
 /.idea/
+
+# Firebase
+.firebaserc
