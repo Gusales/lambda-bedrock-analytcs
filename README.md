@@ -2,7 +2,6 @@
 
 ![Python Version](https://img.shields.io/badge/python-3.11%2B-blue?logo=python)
 ![Firebase Functions](https://img.shields.io/badge/Firebase_Functions-0.5%2B-FFCA28?logo=firebase)
-![AWS Bedrock](https://img.shields.io/badge/AWS_Bedrock-Generative_AI-FF9900?logo=amazonaws)
 ![Architecture](https://img.shields.io/badge/Architecture-Serverless-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
